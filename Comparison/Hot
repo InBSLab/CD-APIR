@@ -1,0 +1,70 @@
+import pandas as pd
+import time
+
+
+def get_hot_items(s_rate):
+    """
+    Return services sorted by hotness
+    :param s_rate: rating matrix
+    :return: Hot service list：Each item is a tuple, including service ID and hotness.
+    """
+    s_rate_hot_df = (s_rate.sum(axis=1)).sort_values(
+        ascending=False)
+    return [(i, s_rate_hot_df[i]) for i in s_rate_hot_df.index]
+
+
+def recommend_hot(s_rate_hot, num=10):
+    """
+    Returns a list of recommendations for a specific number of services
+    :param s_rate_hot: Hot service list
+    :param num:        Number of services
+    :return:           Servixe ID list
+    """
+    return s_rate_hot[:num]
+
+
+if __name__ == '__main__':
+    MATRIX_PATH = 'D:\\sr-kl\\dataset\\temp'
+    s_rate_old = pd.read_csv(MATRIX_PATH + '/s_rate_xunlianji.csv')
+    s_rate_old = s_rate_old.set_index('ServiceID')
+    s_rate_old.rename(columns=int, inplace=True)
+
+    model_start = time.time()  # Timing
+    s_rate_hot = get_hot_items(s_rate_old)
+    recommend_list_with_score = recommend_hot(s_rate_hot)
+    recommend_list = [i[0] for i in recommend_list_with_score]
+    model_end = time.time()  # Timing
+    print(recommend_list)
+    print('Modeling Time: %s' % (model_end - model_start))  # Timing
+
+    # Precision & Recall
+    s_rate_new = pd.read_csv(MATRIX_PATH + '/s_rate_ceshiji.csv')
+    s_rate_new = s_rate_new.set_index('ServiceID')
+    s_rate_new.rename(columns=int, inplace=True)
+
+    s_similar = pd.read_csv(MATRIX_PATH + '/s_similar.csv')
+    s_similar = s_similar.set_index('ServiceID')
+    s_similar.rename(columns=int, inplace=True)
+
+    r_and_s_sum = 0
+    r_sum = 0
+    s_sum = 0
+    for u in s_rate_old.columns:
+        select_set = set(s_rate_new[~s_rate_new[u].isnull()][u].index)
+        recommend_set = set(recommend_list)
+        r_and_s_sum += len(recommend_set & select_set)
+        r_sum += len(recommend_set)
+        s_sum += len(select_set)
+    precision = r_and_s_sum / r_sum
+    recall = r_and_s_sum / s_sum
+    f_measure = (2 * precision * recall) / (precision + recall)
+    print('Precision: %s' % precision)
+    print('Recall: %s' % recall)
+    print('F-Measure: %s' % f_measure)
+
+    # Coverage
+    ru_set = set()
+    for i in recommend_list:
+        ru_set.add(i)
+    coverage = len(ru_set) / len(s_rate_old.index)
+    print('Coverage: %s' % coverage)
