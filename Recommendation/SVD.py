@@ -4,20 +4,20 @@ import pandas as pd
 def s_rate_equalization(s_rate):
     """
     Averaging of ratings by user in the matrix
-    :param s_rate: user rating matrix：pandas.DataFrame
-    :return:       平均化后的用户评分矩阵：pandas.DataFrame
-                   各用户的评分的平均值：pandas.Series
+    :param s_rate: User rating matrix: pandas.DataFrame
+    :return:       Averaged user rating matrix: pandas.DataFrame
+                   The average of ratings by users: pandas.Series
     """
     s_rate_mean = s_rate.mean()
     return (s_rate - s_rate.mean()), s_rate_mean
 
 
-def matrix_prepare(s_rate_equalized, energy_ratio=1):
+def matrix_prepare(s_rate_equalized, energy_ratio=0.6):
     """
-    准备评分预测矩阵：使用SVD分解
-    :param s_rate_equalized:  平均化后的用户评分矩阵
-    :param energy_ratio: 需要保留的能量比例：浮点数，默认为0.8
-    :return: 预测用户评分矩阵
+     Preparing the rating prediction matrix: using SVD
+    :param s_rate_equalized:  Averaged user rating matrix
+    :param energy_ratio: The proportion of energy that to be retained: floating point
+    :return: Predicted user rating
     """
     U, Sigma, VT = np.linalg.svd(s_rate_equalized.fillna(0).values)
     k = 0
@@ -28,11 +28,7 @@ def matrix_prepare(s_rate_equalized, energy_ratio=1):
     NewData = U[:, :k] * np.mat(np.eye(k) * Sigma[:k]) * VT[:k, :]
     ND_DF = pd.DataFrame(NewData, index=s_rate_equalized.index,
                          columns=s_rate_equalized.columns)
-    # 将原矩阵评分添加进去
-    # s_rate_predict = (
-    #         s_rate_equalized.fillna(0) + ND_DF[
-    #             s_rate_equalized.isnull()].fillna(0))
-    # 如果只看近似值的话就使用这个
+    # Adding the original rating matrix
     s_rate_predict = ND_DF
     return s_rate_predict
 
