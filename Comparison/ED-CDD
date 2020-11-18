@@ -1,1 +1,39 @@
+from numpy import linspace
+from scipy.stats import gaussian_kde
+import pandas as pd
+import numpy as np
 
+s_rate_svd_old = pd.read_csv('D:\\sr-kl\\dataset\\perdict\\60\\s_rate_svd_old.csv')
+s_rate_svd_new = pd.read_csv('D:\\sr-kl\\dataset\\perdict\\60\\s_rate_svd_new.csv')
+
+# Calculating Euclidean distance 
+def Euclidean_distance (p, q):
+    n1 = len(p)
+    n2 = len(q)
+    if n1 == 0 or n2 == 0:
+        return 0
+
+    # Estimate the PDFs using Gaussian KDE 
+    pdf1 = gaussian_kde(p)
+    pdf2 = gaussian_kde(q)
+
+    # Calculate the interval to be analyzed further 
+    a = min(min(p), min(q))
+    b = max(max(p), max(q))
+
+    lin = linspace(a, b, max(n1, n2))
+    p = pdf1.pdf(lin)
+    q = pdf2.pdf(lin)
+    M = (p + q) / 2
+    return np.sqrt(np.sum(np.square(p - q)))
+
+def run_normal_unimodal(p,q):
+    eu_dis = Euclidean_distance(p, q)
+    print(eu_dis)
+
+def main():
+    for key in range(339):
+        run_normal_unimodal(s_rate_svd_old[str(key)], s_rate_svd_new[str(key)])
+        
+if __name__ == "__main__":
+    main()
