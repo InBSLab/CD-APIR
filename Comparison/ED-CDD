@@ -24,7 +24,6 @@ def Euclidean_distance (p, q):
     lin = linspace(a, b, max(n1, n2))
     p = pdf1.pdf(lin)
     q = pdf2.pdf(lin)
-    M = (p + q) / 2
     return np.sqrt(np.sum(np.square(p - q)))
 
 def run_normal_unimodal(p,q):
