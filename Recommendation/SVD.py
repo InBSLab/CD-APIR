@@ -35,10 +35,10 @@ def matrix_prepare(s_rate_equalized, energy_ratio=0.6):
 if __name__ == '__main__':
     ENERGY_RATIO = 0.6
 
-    s_rate_old = pd.read_csv('D:\\sr-kl\\dataset\\test\\s_rate_old1.0.csv')
+    s_rate_old = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_old1.0.csv')
     s_rate_old = s_rate_old.set_index('ServiceID')
     s_rate_old.rename(columns=int, inplace=False)
-    s_rate_new = pd.read_csv('D:\\sr-kl\\dataset\\test\\s_rate_new0.8.csv')
+    s_rate_new = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_new0.8.csv')
     s_rate_new = s_rate_new.set_index('ServiceID')
     s_rate_new.rename(columns=int, inplace=False)
 
@@ -47,5 +47,5 @@ if __name__ == '__main__':
     s_rate_new_equalized, s_rate_new_mean = s_rate_equalization(s_rate_new)
     s_rate_svd_new = matrix_prepare(s_rate_new_equalized, ENERGY_RATIO)
 
-    s_rate_svd_old.to_csv('D:\\sr-kl\\dataset\\test\\s_rate_svd_old.csv')
-    s_rate_svd_new.to_csv('D:\\sr-kl\\dataset\\test\\s_rate_svd_new.csv')
+    s_rate_svd_old.to_csv('D:\\sr-kl\\dataset\\predict\\s_rate_svd_old.csv')
+    s_rate_svd_new.to_csv('D:\\sr-kl\\dataset\\predict\\s_rate_svd_new.csv')
