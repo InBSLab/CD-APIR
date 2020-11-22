@@ -3,9 +3,9 @@
 import pandas as pd
 import numpy as np
 
-ratings = pd.read_csv('D:\\sr-kl\\dataset\\test\\ratings_xunlianji.csv')
-users = pd.read_csv('D:\\sr-wsdream\\data\\tempstart\\users.csv')
-wslist = pd.read_csv('D:\\sr-wsdream\\data\\tempstart\\wslist.csv')
+ratings = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\ratings_xunlianji.csv')
+users = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\users.csv')
+wslist = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\wslist.csv')
 s_rate = pd.DataFrame(columns=users.UserID, index=wslist.ServiceID,
                       dtype=np.float)
 rate_time = pd.DataFrame(columns=users.UserID, index=wslist.ServiceID,
@@ -25,5 +25,5 @@ s_rate_new[(rate_time < rate_time.quantile(0.8))] = np.nan
 s_rate_old = s_rate.copy()
 s_rate_old[(rate_time > rate_time.quantile(1.0))] = np.nan
 
-s_rate_new.to_csv('D:\\sr-kl\\dataset\\test\\s_rate_new0.8.csv')
-s_rate_old.to_csv('D:\\sr-kl\\dataset\\test\\s_rate_old1.0.csv')
+s_rate_new.to_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_new0.8.csv')
+s_rate_old.to_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_old1.0.csv')
