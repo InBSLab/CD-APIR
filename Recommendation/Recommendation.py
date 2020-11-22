@@ -29,13 +29,13 @@ def recommend_svd(s_rate_equalized, s_rate_predict, u, num=10):
 if __name__ == '__main__':
     #RECOMMEND_NUM = 10
 
-    s_rate_ceshiji = pd.read_csv('D:\\sr-kl\\dataset\\test\\s_rate_ceshiji.csv')
+    s_rate_ceshiji = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_ceshiji.csv')
     s_rate_ceshiji = s_rate_ceshiji.set_index('ServiceID')
     s_rate_ceshiji.rename(columns=int, inplace=False)
-    s_rate_predict = pd.read_csv('D:\\sr-kl\\dataset\\test\\js.csv')
+    s_rate_predict = pd.read_csv('D:\\sr-kl\\dataset\\predict\\js.csv')
     s_rate_predict = s_rate_predict.set_index('ServiceID')
     s_rate_predict.rename(columns=int, inplace=False)
-    s_rate_xunlianji = pd.read_csv('D:\\sr-kl\\dataset\\test\\s_rate_xunlianji.csv')
+    s_rate_xunlianji = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_xunlianji.csv')
     s_rate_xunlianji = s_rate_xunlianji.set_index('ServiceID')
     s_rate_xunlianji.rename(columns=int, inplace=False)
 
