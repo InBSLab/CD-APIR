@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 
 # Splitting training set and test set
-ratings = pd.read_csv('DD:\\sr-kl\\dataset\\ml-out\\ratings.csv')
-users = pd.read_csv('D:\\sr-wsdream\\data\\tempstart\\users.csv')
-wslist = pd.read_csv('D:\\sr-wsdream\\data\\tempstart\\wslist.csv')
+ratings = pd.read_csv('D:\\sr-kl\\dataset\\ml-out\\ratings.csv')
+users = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\users.csv')
+wslist = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\wslist.csv')
 s_rate = pd.DataFrame(columns=users.UserID, index=wslist.ServiceID,
                       dtype=np.float)
 rate_time = pd.DataFrame(columns=users.UserID, index=wslist.ServiceID,
@@ -29,11 +29,11 @@ rate_time_new = rate_time.copy()
 rate_time_new[s_rate_new.isnull()] = np.nan
 rate_time_old = rate_time.copy()
 rate_time_old[s_rate_old.isnull()] = np.nan
-ratings_new.to_csv('D:\\sr-kl\\dataset\\test\\ratings_ceshiji.csv')
-ratings_old.to_csv('D:\\sr-kl\\dataset\\test\\ratings_xunlianji.csv')
-s_rate.to_csv('D:\\sr-kl\\dataset\\test\\s_rate.csv')
-s_rate_new.to_csv('D:\\sr-kl\\dataset\\test\\s_rate_ceshiji.csv')
-s_rate_old.to_csv('D:\\sr-kl\\dataset\\test\\s_rate_xunlianji.csv')
-rate_time_new.to_csv('D:\\sr-kl\\dataset\\test\\rate_time_ceshiji.csv')
-rate_time_old.to_csv('D:\\sr-kl\\dataset\\test\\rate_time_xunlianji.csv')
-rate_time.to_csv('D:\\sr-kl\\dataset\\test\\rate_time.csv')
+ratings_new.to_csv('D:\\sr-kl\\dataset\\data-preparation\\ratings_ceshiji.csv')
+ratings_old.to_csv('D:\\sr-kl\\dataset\\data-preparation\\ratings_xunlianji.csv')
+s_rate.to_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate.csv')
+s_rate_new.to_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_ceshiji.csv')
+s_rate_old.to_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_xunlianji.csv')
+rate_time_new.to_csv('D:\\sr-kl\\dataset\\data-preparation\\rate_time_ceshiji.csv')
+rate_time_old.to_csv('D:\\sr-kl\\dataset\\data-preparation\\rate_time_xunlianji.csv')
+rate_time.to_csv('D:\\sr-kl\\dataset\\data-preparation\\rate_time.csv')
