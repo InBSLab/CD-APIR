@@ -3,8 +3,8 @@ from scipy.stats import gaussian_kde
 import pandas as pd
 import scipy.stats
 
-s_rate_svd_old = pd.read_csv('D:\\sr-kl\\dataset\\test\\s_rate_svd_old.csv')
-s_rate_svd_new = pd.read_csv('D:\\sr-kl\\dataset\\test\\s_rate_svd_new.csv')
+s_rate_svd_old = pd.read_csv('D:\\sr-kl\\dataset\\predict\\s_rate_svd_old.csv')
+s_rate_svd_new = pd.read_csv('D:\\sr-kl\\dataset\\predict\\s_rate_svd_new.csv')
 
 # Calculating JS divergence
 def JS_divergence(p, q):
