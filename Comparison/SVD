@@ -60,7 +60,7 @@ if __name__ == '__main__':
     s_rate_old = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_xunlianji.csv')
     s_rate_old = s_rate_old.set_index('ServiceID')
     s_rate_old.rename(columns=int, inplace=True)
-    s_rate_new = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_xunlianji.csv')
+    s_rate_new = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_ceshiji.csv')
     s_rate_new = s_rate_new.set_index('ServiceID')
     s_rate_new.rename(columns=int, inplace=False)
 
