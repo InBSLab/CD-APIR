@@ -46,7 +46,7 @@ def UserSimilarity(train):
         :param train Training set
         :return W    Two-dimensional matrix for storing user similarity
     '''
-    # Create an item-to-user regression table to reduce the time complexity of calculating user similarity
+    # Creating an item-to-user regression table to reduce the time complexity of calculating user similarity
     item_users = dict()
     for u, items in train.items():
         for i in items:
@@ -55,7 +55,7 @@ def UserSimilarity(train):
             item_users[i].add(u)
         C = dict()
         N = dict()
-        # Calculate the number of items shared between each users
+        # Calculating the number of items shared between each users
         for i, users in item_users.items():
             for u in users:
                 if (u not in N):
