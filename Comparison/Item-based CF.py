@@ -17,7 +17,7 @@ def SplitData(data, M, key, seed):
     ''' Dividing data into training set and test set
         :param data   List for storing training set and test set
         :param M      Dividing the data into M shares
-        :param key    Select the NO. key share as test set
+        :param key    Selecting the NO. key share as test set
         :param seed   Random seed
         :return train Training set
         :return test  Test set
@@ -56,7 +56,7 @@ def ItemSimilarity(train):
     '''
     C = dict()
     N = dict()
-    # Calculate the number of users for per two items
+    # Calculating the number of users for per two items
     for u, items in train.items():
         for i in items:
             if i not in N:
