@@ -180,7 +180,7 @@ if __name__ == '__main__':
     rec_time_sum = 0
 
     print("this is the main function")
-    file = open('D:\\sr-kl\\dataset\\ml-out\\ratings.dat')
+    file = open('D:\\sr-kl\\dataset\\data-preparation\\ratings.dat')
     ReadData(file, data)
     train, test = SplitData(data, M, key, seed)
     W = UserSimilarity(train)
