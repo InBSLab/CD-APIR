@@ -4,10 +4,9 @@ import time
 
 def s_rate_equalization(s_rate):
     """
-    Averaging of ratings by user in the matrix
+    Averaging ratings in the matrix
     :param s_rate: User rating matrix: pandas.DataFrame
     :return:       Averaged user rating matrix: pandas.DataFrame
-                   The average of ratings by users: pandas.Series
     """
     s_rate_mean = s_rate.mean()
     return (s_rate - s_rate.mean()), s_rate_mean
@@ -87,7 +86,7 @@ def personal_rank(scores, u, num=10):
 
 if __name__ == '__main__':
 
-    MATRIX_PATH = 'D:\\sr-kl\\dataset\\1'
+    MATRIX_PATH = 'D:\\sr-kl\\dataset\\data-preparation'
 
     s_rate_old = pd.read_csv(MATRIX_PATH + '/s_rate_xunlianji.csv')
     s_rate_old = s_rate_old.set_index('ServiceID')
@@ -107,10 +106,6 @@ if __name__ == '__main__':
     s_rate_new = pd.read_csv(MATRIX_PATH + '/s_rate_ceshiji.csv')
     s_rate_new = s_rate_new.set_index('ServiceID')
     s_rate_new.rename(columns=int, inplace=True)
-
-    s_similar = pd.read_csv(MATRIX_PATH + '/s_similar.csv')
-    s_similar = s_similar.set_index('ServiceID')
-    s_similar.rename(columns=int, inplace=True)
 
     r_and_s_sum = 0
     r_sum = 0
