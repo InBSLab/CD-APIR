@@ -5,13 +5,12 @@ import time
 
 def s_rate_equalization(s_rate):
     """
-    Averaging of ratings by user in the matrix
+    Averaging ratings in the matrix
     :param s_rate: User rating matrix: pandas.DataFrame
     :return:       Averaged user rating matrix: pandas.DataFrame
-                   The average of ratings by users: pandas.Series
     """
     s_rate_mean = s_rate.mean()
-    return (s_rate - s_rate.mean()), s_rate_mean
+    return (s_rate - s_rate.mean())
 
 
 def matrix_prepare(s_rate_equalized, energy_ratio=0.6):
@@ -58,14 +57,14 @@ if __name__ == '__main__':
     #ML_DS_PATH = '../dataset/ml-out-sample'
     MATRIX_PATH = 'D:\\sr-kl\\dataset\\temp'
 
-    s_rate_old = pd.read_csv('D:\\sr-kl\\dataset\\1\\s_rate_xunlianji.csv')
+    s_rate_old = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_xunlianji.csv')
     s_rate_old = s_rate_old.set_index('ServiceID')
     s_rate_old.rename(columns=int, inplace=True)
-    s_similar = pd.read_csv(MATRIX_PATH + '/s_similar.csv')
-    s_similar = s_similar.set_index('ServiceID')
-    s_similar.rename(columns=int, inplace=True)
+    s_rate_new = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_xunlianji.csv')
+    s_rate_new = s_rate_new.set_index('ServiceID')
+    s_rate_new.rename(columns=int, inplace=False)
 
-    s_rate_old_equalized, s_rate_old_mean = s_rate_equalization(s_rate_old)
+    s_rate_old_equalized = s_rate_equalization(s_rate_old)
 
     model_start = time.time()  # Timing
     s_rate_predict = matrix_prepare(s_rate_old_equalized, ENERGY_RATIO)
@@ -100,7 +99,6 @@ if __name__ == '__main__':
             ru_set.add(i)
         rec_time_sum += rec_end - rec_start  # Timing
     coverage = len(ru_set) / len(s_rate_old.index)
-    diversity = sum_diversity_u / (len(s_rate_old.columns) - user_minus)
     rec_time = rec_time_sum / len(s_rate_old.columns)  # Timing
     precision = r_and_s_sum / r_sum
     recall = r_and_s_sum / s_sum
