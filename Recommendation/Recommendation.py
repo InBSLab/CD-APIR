@@ -3,24 +3,23 @@ import time
 
 def s_rate_equalization(s_rate):
     """
-    Averaging of ratings by user in the matrix
+    Averaging ratings in the matrix
     :param s_rate: User rating matrix: pandas.DataFrame
     :return:       Averaged user rating matrix: pandas.DataFrame
-                   The average of ratings by users: pandas.Series
     """
     s_rate_mean = s_rate.mean()
-    return (s_rate - s_rate.mean()), s_rate_mean
+    return (s_rate - s_rate.mean())
 
 def recommend_svd(s_rate_equalized, s_rate_predict, u, num=10):
     """
-    Generate a recommendation list
+    Generating a recommendation list
     :param s_rate_equalized:   Averaged user rating matrix
     :param s_rate_predict:     Predicted user rating matrix
     :param u:                  User ID: integer 
     :param num:                Maximum number of services in the list: integer 
     :return:Recommended list: list. The items are tuple. Ttems within the tuple are service ID and service's rating.
     """
-    # Selection of services that were not rated in the original rating matrix and have a predictive value at or above the average score
+    # Selecting services that were not rated in the original rating matrix and have a predictive value at or above the average score
     r_1 = s_rate_predict.loc[s_rate_equalized[u].isnull(), u][
         s_rate_predict[u] >= 0].sort_values(ascending=False)
     rec_movies = [([i, r_1[i]]) for i in r_1[:num].index]
@@ -39,7 +38,7 @@ if __name__ == '__main__':
     s_rate_xunlianji = s_rate_xunlianji.set_index('ServiceID')
     s_rate_xunlianji.rename(columns=int, inplace=False)
 
-    s_rate_predict_equalized, s_rate_predict_mean = s_rate_equalization(s_rate_xunlianji)
+    s_rate_predict_equalized = s_rate_equalization(s_rate_xunlianji)
 
     # Precision & Recall & Coverage & Diversity
 
