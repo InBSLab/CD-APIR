@@ -3,13 +3,12 @@ import pandas as pd
 
 def s_rate_equalization(s_rate):
     """
-    Averaging of ratings by user in the matrix
+    Averaging ratings in the matrix
     :param s_rate: User rating matrix: pandas.DataFrame
     :return:       Averaged user rating matrix: pandas.DataFrame
-                   The average of ratings by users: pandas.Series
     """
     s_rate_mean = s_rate.mean()
-    return (s_rate - s_rate.mean()), s_rate_mean
+    return (s_rate - s_rate.mean())
 
 
 def matrix_prepare(s_rate_equalized, energy_ratio=0.6):
@@ -42,9 +41,9 @@ if __name__ == '__main__':
     s_rate_new = s_rate_new.set_index('ServiceID')
     s_rate_new.rename(columns=int, inplace=False)
 
-    s_rate_old_equalized, s_rate_old_mean = s_rate_equalization(s_rate_old)
+    s_rate_old_equalized = s_rate_equalization(s_rate_old)
     s_rate_svd_old = matrix_prepare(s_rate_old_equalized, ENERGY_RATIO)
-    s_rate_new_equalized, s_rate_new_mean = s_rate_equalization(s_rate_new)
+    s_rate_new_equalized = s_rate_equalization(s_rate_new)
     s_rate_svd_new = matrix_prepare(s_rate_new_equalized, ENERGY_RATIO)
 
     s_rate_svd_old.to_csv('D:\\sr-kl\\dataset\\predict\\s_rate_svd_old.csv')
