@@ -30,7 +30,7 @@ def ufm(a, amin, amax):
     return (a - amin) / (amax - amin)
 
 if __name__ == "__main__":
-    js = pd.Series([JS_divergence(s_rate_svd_old[str(key)], s_rate_svd_new[str(key)]) for key in range(339)]) #计算JS散度
+    js = pd.Series([JS_divergence(s_rate_svd_old[str(key)], s_rate_svd_new[str(key)]) for key in range(339)]) #Calculat JS divergence
     amin = min(js)
     amax = max(js)
     js = ufm(js, amin, amax) #Normalize JS divergence
