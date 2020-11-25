@@ -86,7 +86,7 @@ def personal_rank(scores, u, num=10):
 
 if __name__ == '__main__':
 
-    MATRIX_PATH = 'D:\\sr-kl\\dataset\\data-preparation'
+    MATRIX_PATH = 'D:\\sr-kl\\dataset\\'
 
     s_rate_old = pd.read_csv(MATRIX_PATH + '/s_rate_xunlianji.csv')
     s_rate_old = s_rate_old.set_index('ServiceID')
