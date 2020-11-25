@@ -12,7 +12,7 @@ def s_rate_equalization(s_rate):
     return (s_rate - s_rate.mean()), s_rate_mean
 
 
-def graph_gen(s_rate, rate_limit=1.9667):
+def graph_gen(s_rate, rate_limit=1.97):
     """
     Generating bipartite graph
     :param s_rate:     User rating matrix
@@ -43,7 +43,7 @@ def M_gen(graph):
     return g
 
 
-def matrix_prepare(s_rate, rate_limit= 1.9667, alpha=0.8):
+def matrix_prepare(s_rate, rate_limit= 1.97, alpha=0.8):
     """
     Matrix preparation, an encapsulation of the above two functions
     :param s_rate:     user rating matrix 
