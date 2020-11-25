@@ -4,8 +4,8 @@ import pandas as pd
 import scipy.stats
 import numpy as np
 
-s_rate_svd_old = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_svd_old.csv')
-s_rate_svd_new = pd.read_csv('D:\\sr-kl\\dataset\\data-preparation\\s_rate_svd_new.csv')
+s_rate_svd_old = pd.read_csv('D:\\sr-kl\\dataset\\predict\\s_rate_svd_old.csv')
+s_rate_svd_new = pd.read_csv('D:\\sr-kl\\dataset\\predict\\s_rate_svd_new.csv')
 
 def JS_divergence(p, q):
     n1 = len(p)
@@ -59,5 +59,5 @@ if __name__ == "__main__":
 
     print("End")
     print(s_rate_predict)
-    s_rate_predict.to_csv('D:\\sr-kl\\dataset\\data-preparation\\js.csv')
+    s_rate_predict.to_csv('D:\\sr-kl\\dataset\\predict\\js.csv')
     
