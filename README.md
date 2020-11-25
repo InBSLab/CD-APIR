@@ -10,7 +10,7 @@ STEP 2: Recommendation/SVD.py
 
 Singular value decomposition of two matrices in new time window and old time window respectively.
 
-STEP 3: Recommendation/JS divergence.py
+STEP 3: Recommendation/JS divergence and prediction.py
 
 Calculate the JS divergence of each user based on the user’s ratings to each service in the two window periods.
 
