@@ -19,3 +19,11 @@ STEP 4: Recommendation/Recommendation.py
 Recommend cloud service APIs based on preference drift detection.
 
 Experiments were implemented using Python 3.7.3 on win32.
+
+©From 2020 to Now, Copyrights reserved by the authors. 
+
+***Please refer to the following paper for the detailed description of the CD-APIR approach:
+
+[1] Lei Wang, Yunqiu Zhang, and Xiaohu Zhu, “Concept Drift-Aware Temporal Cloud Service APIs Recommendation for Building Composite Cloud Systems”, Journal of Systems and Software, 2021, doi: 10.1016/j.jss.2020.110902.
+
+***IF YOU ARE INSPIRED BY THIS SOURCE CODE IN PUBLISHED RESEARCH, PLEASE CITE THE ABOVE PAPER. THANKS!
