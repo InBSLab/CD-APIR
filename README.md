@@ -27,5 +27,6 @@ Experiments were implemented using Python 3.7.3 on win32.
 
 ***IF YOU ARE INSPIRED BY THIS SOURCE CODE IN PUBLISHED RESEARCH, PLEASE CITE THE ABOVE PAPER. THANKS!
 
-©From 2020 to Now, Copyrights reserved by the authors. 
+***IF YOU HAVE USED OUR THCHNIQUE IN YOUR COMMERCIAL USED SYSTEMS, COULE PLEASE LET US KNOW? THANKS!
 
+E-MAIL: leiwangchn@163.com.
